@@ -1,4 +1,16 @@
+# Helper functions
 
+# Param $1 = Foreground $2 = Background
+set_color() {
+    tput setaf $1
+    tput setab $2
+}
+
+reset_decor() {
+    tput sgr0
+}
+
+# Main function
 disk_space_visual() {
     #padding top
     printf "\n\n\n"
