@@ -49,15 +49,25 @@ disk_space_visual() {
             green_meter=$[50-red_meter]
 
             # display graphics
+
+            # Char used to build graphical meter
+            meter_builder_char='-'
+
             reset_decor
             printf " - Free:%7sGB%3s%% " $free_gb $free_perc
 
-            set_color 2 0
-            printf "%0.s=" $(seq 1 $green_meter)
+            if [ "$green_meter" != 0 ]; 
+            then
+                set_color 2 0
+                printf "%0.s$meter_builder_char" $(seq 1 $green_meter)
+            fi
 
-            set_color 1 0
-            printf "%0.s=" $(seq 1 $red_meter)
-            
+            if [ "$red_meter" != 0 ]; 
+            then
+                set_color 1 0
+                printf "%0.s$meter_builder_char" $(seq 1 $red_meter)
+            fi
+
             reset_decor
             printf " Used:%7sGB%3s%% - " $used_gb $used_perc
 
