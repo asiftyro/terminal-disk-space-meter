@@ -5,6 +5,12 @@ Shall function that prints mounted disk space usage graph in terminal.
 
 `> disk_space_visual`
 
+or 
+
+
+`> ds`
+
+
 
 <img src="terminal.png" width="640"  title="Google Accounts Login Screen">
 
