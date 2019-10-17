@@ -27,6 +27,15 @@ disk_space_visual() {
         disk_type=`echo ${lines[$i]} | awk '{print $1}'`
         # Get Disk description/label
         disk_desc=`echo ${lines[$i]} | awk -F" {2,}" '{print $NF}'`
+
+
+        # Exception, disk to discard in visual
+        if [ "$disk_desc" = "/private/var/vm" ];
+        then
+            continue
+        fi
+
+
         # Take only Root disk and Volumes(if mounted)
         if [[ $disk_type == *"/dev/"* ]];then
 
@@ -36,6 +45,8 @@ disk_space_visual() {
                 disk_desc=${disk_desc//\/} # Clean backslashes
                 disk_desc=${disk_desc/Volumes} # Clean the word 'Volumes'
             fi
+
+
 
             total=`echo ${lines[$i]} | awk '{print $2}'` # total disk space in 512-blocks
             used=`echo ${lines[$i]} | awk '{print $3}'` # used disk space in 512-blocks
@@ -51,10 +62,10 @@ disk_space_visual() {
             # display graphics
 
             # Char used to build graphical meter
-            meter_builder_char='-'
+            meter_builder_char='#'
 
             reset_decor
-            printf " - Free:%7sGB%3s%% " $free_gb $free_perc
+            printf " - Free:%7sGB%4s%% " $free_gb $free_perc
 
             if [ "$green_meter" != 0 ]; 
             then
@@ -69,7 +80,7 @@ disk_space_visual() {
             fi
 
             reset_decor
-            printf " Used:%7sGB%3s%% - " $used_gb $used_perc
+            printf " Used:%7sGB%4s%% - " $used_gb $used_perc
 
             meter_label=" "$disk_desc" : "$total_gb" GB "
             meter_label_length=${#meter_label}
@@ -86,3 +97,5 @@ disk_space_visual() {
     # Reset IFS to Original
     IFS=$oldIFS
 }
+
+  alias ds='disk_space_visual'
