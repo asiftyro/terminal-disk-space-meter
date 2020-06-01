@@ -12,7 +12,7 @@ or
 
 
 
-<img src="terminal.png" width="640"  title="Google Accounts Login Screen">
+<img src="terminal.png" width="640"  title="disk-space">
 
 
 Min terminal width: 94
