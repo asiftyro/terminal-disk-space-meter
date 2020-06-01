@@ -1,6 +1,9 @@
 # terminal-disk-space-meter
 Shall function that prints mounted disk space usage graph in terminal.
 
+***Updated version [here!](https://github.com/asiftyro/terminal-disk-space-graphic-meter)***
+
+
 **Usage**:
 
 `> disk_space_visual`
